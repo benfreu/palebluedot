@@ -1,0 +1,38 @@
+body {
+  background-color: black;
+  font-family: 'Lusitana', serif;
+  color: white;
+  font-size: 45px;
+  overflow: hidden;
+}
+
+.slide {
+  display: none;
+}
+
+.slide.current {
+  display: block;
+}
+
+.pbd, .sagan {
+  margin: 0;
+}
+
+.pbd {
+  margin-top: 100px;
+  margin-left: 200px;
+  font-size: 80px;
+}
+
+.sagan {
+  color: grey;
+  margin-left: 200px;
+  font-size: 40px;
+}
+
+.voyager, .year {
+  margin-top: 100px;
+  margin-left: 200px;
+  font-size: 100px;
+}
+

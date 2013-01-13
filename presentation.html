@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame. Remove this if you use the .htaccess -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Pale Blue Dot</title>
+    <link rel="stylesheet" type="text/css" media="all" href="style.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lusitana' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <div id="pbd">
+    <div id="start" class="slide current">
+      <p class="pbd">
+        <span>Pale</span>
+        <span>Blue</span>
+        <span>Dot</span>
+      </p>
+      <p class="sagan">
+        Carl Sagan
+      </p>
+    </div>
+    <div id="voyager" class="">
+      <p class="voyager">Voyager</p>
+      <p class="year">1970</p>
+    </div>
+    <div id="video">
+      <video width="320" height="240" class="video">
+        <source src="voyager.mov" type="video/mp4">
+      </video>
+    </div>
+    <div id="photo1">
+      <img src="pbd1.jpg" />
+    </div>
+  </div>
+  <script src="js/jquery.js"></script>
+  <script src="js/pbd.js"></script>
+  <script>
+    var pres = new pbd();
+    pres.addChapter(function (slide) {
+      var pbd = slide.find('.pbd span');
+      var sagan = slide.find('.sagan');
+      pbd.hide();
+      sagan.hide();
+      slide.show();
+      var verz = 0;
+      pbd.each(function (key, el) {
+        window.setTimeout(function () {
+          $(el).fadeIn(3000);
+        }, verz);
+        verz += 1000;
+      });
+      window.setTimeout(function () {
+        sagan.fadeIn(3000);
+      }, 3000);
+    }, $('#start'));
+    pres.addChapter(function (slide) {
+      var voyager = slide.find('.voyager');
+      var year = slide.find('.year');
+      voyager.hide();
+      year.hide();
+      slide.show();
+      voyager.fadeIn(1000, function() {
+        window.setTimeout(function() {
+          voyager.fadeOut(1000, function() {
+            year.fadeIn(1000);
+          });
+        }, 2000);
+      });
+    }, $('#voyager'));
+    pres.addChapter(function (slide) {
+      var video = slide.find('.video');
+      video = video.get(0);
+      var width = $(window).width();
+      $(video).attr('width', width);
+      $(video).attr('height', Math.round(width / 16 * 9));
+      slide.fadeIn();
+      video.play();
+    }, $('#video'));
+    pres.addChapter(function (slide) {
+      var photo = slide.find('img');
+      var width = $(window).width();
+      photo.attr('width', width);
+      slide.fadeIn(3000);
+      photo.animate({
+        width: "5468px",
+        marginLeft: '-2820px',
+        marginTop: '-690px'
+      }, {
+        duration: 60000
+      });
+    }, $('#photo1'));
+   </script>
+</body>
+</html>
